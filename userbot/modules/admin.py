@@ -623,9 +623,9 @@ async def get_admin(show):
     await show.edit(mentions, parse_mode="html")
 
 
-@register(outgoing=True, pattern="^.pin(?: |$)(.*)")
+@register(outgoing=True, pattern="^.pinme(?: |$)(.*)")
 async def pin(msg):
-    """ For .pin command, pins the replied/tagged message on the top the chat. """
+    """ For .pinme command, pins the replied/tagged message on the top the chat. """
     # Admin or creator check
     chat = await msg.get_chat()
     admin = chat.admin_rights
