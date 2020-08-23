@@ -1386,7 +1386,7 @@ CMD_HELP.update({
 \nUsage: Does an image search on Google and shows 5 images.\
 \n\n`.currency` <amount> <from> <to>\
 \nUsage: Converts various currencies for you.\
-\n\n`.carbon` <text or reply>\
+\n\n`.karbon` <text or reply>\
 \nUsage: Beautify your code using carbon.now.sh\nUse .crblang <text> to set language for your code.\
 \n\n`.google` <query>\
 \nUsage: Does a search on Google.\
