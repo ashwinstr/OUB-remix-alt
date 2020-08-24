@@ -39,7 +39,7 @@ async def pat(e):
 
     
     CMD_HELP.update({
-    'pat':
-    '.pat\
-\nUsage: sends random pat pics & gifs.'
+    "pat":
+    ".pat\
+\nUsage: sends random pat pics & gifs."
 })
