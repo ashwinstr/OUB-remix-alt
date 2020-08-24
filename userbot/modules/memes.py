@@ -1654,7 +1654,6 @@ CMD_HELP.update({
 \n\n`.cry`\
 \nUsage: y u du dis, i cri.\
 \n\n`.smile`\
->>>>>>> 32772f5f909a2ab8414d706af412af66a2392d08
 \nUsage: show your smile.\
 \n\n`.shg`\
 \nUsage: Shrug at it !!\
