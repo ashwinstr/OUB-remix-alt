@@ -1653,9 +1653,6 @@ CMD_HELP.update({
 \nUsage: reply to slap them with random objects !!\
 \n\n`.cry`\
 \nUsage: y u du dis, i cri.\
-<<<<<<< HEAD
-\n\n`.happy`\
-=======
 \n\n`.smile`\
 >>>>>>> 32772f5f909a2ab8414d706af412af66a2392d08
 \nUsage: show your smile.\
