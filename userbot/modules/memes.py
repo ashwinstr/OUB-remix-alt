@@ -439,6 +439,43 @@ FACEREACTS = [
     "(｡◕‿◕｡)",
 ]
 
+SMILE = [
+    "(° ͜ʖ͡°)╭∩╮",
+    "(งツ)ว",
+    "(◠﹏◠)",
+    "(⊃｡•́‿•̀｡)⊃",
+    "(ᵔᴥᵔ)",
+    "ح˚௰˚づ ",
+    "◖ᵔᴥᵔ◗ ♪ ♫ ",
+    "(☞ﾟヮﾟ)☞",
+    "(•̀ᴗ•́)و ̑̑",
+    "♪♪ ヽ(ˇ∀ˇ )ゞ",
+    "( ˘ ³˘)♥ ",
+    "♥‿♥",
+    "⁽⁽ଘ( ˊᵕˋ )ଓ⁾⁾",
+    "(づ｡◕‿‿◕｡)づ",
+    "“ヽ(´▽｀)ノ”",
+    "(づ￣ ³￣)づ",
+    "ᕕ( ᐛ )ᕗ",
+    "⊂(◉‿◉)つ",
+    "V•ᴥ•V",
+    "q(❂‿❂)p",
+    "ฅ^•ﻌ•^ฅ",
+    "（ ^_^）o自自o（^_^ ）",
+    "ಠ‿ಠ",
+    "ヽ(´▽`)/",
+    "ᵒᴥᵒ#",
+    "( ͡° ͜ʖ ͡°)",
+    "ヽ(´ー｀)ノ",
+    "☜(⌒▽⌒)☞",
+    "┬─┬⃰͡ (ᵔᵕᵔ͜ )",
+    r"¯\_(ツ)_/¯",
+    "ʕᵔᴥᵔʔ",
+    "ʕ•ᴥ•ʔ",
+    "ʕʘ̅͜ʘ̅ʔ",
+    "(｡◕‿◕｡)",
+]
+
 RUNS_STR = [
     "Runs to Thanos..",
     "Runs far, far away from earth..",
@@ -924,6 +961,12 @@ async def facepalm(e):
 async def cry(e):
     """ y u du dis, i cry everytime !! """
     await e.edit(choice(CRI))
+    
+    
+@register(outgoing=True, pattern="^.smile$")
+async def cry(e):
+    """ show your smile !! """
+    await e.edit(choice(SMILE))
 
 
 @register(outgoing=True, pattern="^.insult$")
@@ -1610,6 +1653,8 @@ CMD_HELP.update({
 \nUsage: reply to slap them with random objects !!\
 \n\n`.cry`\
 \nUsage: y u du dis, i cri.\
+\n\n`.happy`\
+\nUsage: show your smile.\
 \n\n`.shg`\
 \nUsage: Shrug at it !!\
 \n\n`.run`\
