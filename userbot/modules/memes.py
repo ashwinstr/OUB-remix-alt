@@ -961,15 +961,10 @@ async def facepalm(e):
 async def cry(e):
     """ y u du dis, i cry everytime !! """
     await e.edit(choice(CRI))
-<<<<<<< HEAD
-    
-    
-=======
+
                       
-                      
->>>>>>> 32772f5f909a2ab8414d706af412af66a2392d08
 @register(outgoing=True, pattern="^.smile$")
-async def cry(e):
+async def smile(e):
     """ show your smile !! """
     await e.edit(choice(SMILE))
 
@@ -1658,11 +1653,7 @@ CMD_HELP.update({
 \nUsage: reply to slap them with random objects !!\
 \n\n`.cry`\
 \nUsage: y u du dis, i cri.\
-<<<<<<< HEAD
-\n\n`.happy`\
-=======
 \n\n`.smile`\
->>>>>>> 32772f5f909a2ab8414d706af412af66a2392d08
 \nUsage: show your smile.\
 \n\n`.shg`\
 \nUsage: Shrug at it !!\
