@@ -42,7 +42,7 @@ async def fban(event):
         return await event.edit(
             "**You haven't connected to any federations yet!**")
 
-    await event.edit(f"**Fbanning** {user_link}...")
+    await event.edit(f"**Fbanning** [{user.first_name}](tg://user?id={user.id}) {user_link}...")
     failed = []
     total = int(0)
 
@@ -53,7 +53,7 @@ async def fban(event):
         try:
             async with bot.conversation(chat) as conv:
                 await conv.send_message(
-                    f"/fban [{fban_id}](tg://user?id={fban_id}) {reason}")
+                    f"/fban [{user.first_name}](tg://user?id={user.id}) [{fban_id}](tg://user?id={fban_id}) {reason}")
                 reply = await conv.get_response()
                 await bot.send_read_acknowledge(conv.chat_id,
                                                 message=reply,
@@ -75,7 +75,7 @@ async def fban(event):
         status = f"Success! Fbanned in {total} feds."
 
     await event.edit(
-        f"**Fbanned **{user_link}!\n**Reason:** {reason}\n**Status:** {status}"
+        f"**Fbanned ** [{user.first_name}](tg://user?id={user.id}) {user_link}!\n**Reason:** {reason}\n**Status:** {status}"
     )
 
 
