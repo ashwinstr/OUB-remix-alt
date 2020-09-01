@@ -222,7 +222,6 @@ async def ban(bon):
     chat = await bon.get_chat()
     admin = chat.admin_rights
     creator = chat.creator
-    first_name = user.get_name()
 
     # Well
     if not admin and not creator:
@@ -235,6 +234,8 @@ async def ban(bon):
     else:
         return
 
+    first_name = user.get_name()
+    
     # Announce that we're going to whack the pest
     await bon.edit("`Whacking the pest!`")
 
