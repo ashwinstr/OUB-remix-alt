@@ -411,7 +411,7 @@ async def _(event):
             translated.src,
             lan,
             after_tr_text
-          print("`
+          print("`") 
         )
         await event.edit(output_str)
     except Exception as exc:
