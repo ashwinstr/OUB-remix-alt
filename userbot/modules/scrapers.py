@@ -411,7 +411,7 @@ async def _(event):
             lan,
             after_tr_text
         )
-        edited_str = """`{output_str}`"""
+        edited_str = """`"""(output_str)"""`"""
         await event.edit(edited_str)
     except Exception as exc:
         await event.edit(str(exc))
