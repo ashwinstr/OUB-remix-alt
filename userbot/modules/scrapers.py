@@ -403,7 +403,7 @@ async def _(event):
     try:
         translated = translator.translate(text, dest=lan)
         after_tr_text = translated.text
-        edited_text = (("`{}`).format(after_tr_text))
+        edited_text = (("`{}`").format(after_tr_text))
         # TODO: emojify the :
         # either here, or before translation
         output_str = """**TRANSLATED** from {} to {}
