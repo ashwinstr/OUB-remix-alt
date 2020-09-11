@@ -403,16 +403,17 @@ async def _(event):
     try:
         translated = translator.translate(text, dest=lan)
         after_tr_text = translated.text
+        edited_text = (("`{}`).format(after_tr_text))
         # TODO: emojify the :
         # either here, or before translation
         output_str = """**TRANSLATED** from {} to {}
 {}""".format(
             translated.src,
             lan,
-            after_tr_text
+            edited_text
         )
-        edited_str = ("`{} `".format(output_str)) 
-        await event.edit(edited_str)
+        
+        await event.edit(output_str)
     except Exception as exc:
         await event.edit(str(exc))
 
