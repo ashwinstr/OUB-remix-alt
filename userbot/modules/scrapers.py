@@ -1154,7 +1154,7 @@ async def capture(url):
     prefix_str = 'http://'
     input_str = url.pattern_match.group(1)
     complete_link = (("{}{}").format(prefix_str, input_str))
-    link_match = match(r'\bhttps?://.*\.\S+', input_str)
+    link_match = match(r'\bhttps?://.*\.\S+', complete_link)
     if link_match:
         link = link_match.group()
     else:
