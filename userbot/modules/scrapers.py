@@ -1151,7 +1151,9 @@ async def capture(url):
     chrome_options.add_argument("--ignore-certificate-errors")
     chrome_options.arguments.remove("--window-size=1920x1080")
     driver = await chrome(chrome_options=chrome_options)
+    prefix_str = 'http://'
     input_str = url.pattern_match.group(1)
+    complete_link = ((prefix_str{}).format(input_str))
     link_match = match(r'\bhttps?://.*\.\S+', input_str)
     if link_match:
         link = link_match.group()
