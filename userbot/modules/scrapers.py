@@ -1151,14 +1151,18 @@ async def capture(url):
     chrome_options.add_argument("--ignore-certificate-errors")
     chrome_options.arguments.remove("--window-size=1920x1080")
     driver = await chrome(chrome_options=chrome_options)
-    prefix_str = 'http://'
     input_str = url.pattern_match.group(1)
-    complete_link = (("{}{}").format(prefix_str, input_str))
-    link_match = match(r'\bhttps?://.*\.\S+', complete_link)
+    link_match = match(r'\bhttps?://.*\.\S+', input_str)
     if link_match:
         link = link_match.group()
     else:
-        return await url.edit("`I need a valid link to take screenshots from.`")
+        prefix_str = 'http://'
+        complete_link = (("{}{}").format(prefix_str, input_str))
+        link_match = match(r'\bhttps?://.*\.\S+', input_str)
+        if link_match:
+            link = link_match.group()
+        else:
+            return await url.edit("`I need a valid link to take screenshots from.`")
     driver.get(link)
     height = driver.execute_script(
         "return Math.max(document.body.scrollHeight, document.body.offsetHeight, "
