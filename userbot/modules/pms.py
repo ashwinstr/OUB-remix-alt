@@ -296,12 +296,9 @@ async def monito_p_m_s(event):
             try:
                 e = await event.client.get_entity(int(PM_LOGGR_BOT_API_ID))
                 msg.message = (("{}").format(chat_name)),
-                try_message_from = await event.client.forward_messages(
-                    e,
-                    msg.message,
-                    silent=True
                 fwd_message = await event.client.forward_messages(
                     e,
+                    msg.message,
                     event.message,
                     silent=True
                 )
