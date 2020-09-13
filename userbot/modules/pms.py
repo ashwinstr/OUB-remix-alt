@@ -295,8 +295,7 @@ async def monito_p_m_s(event):
                 e = await event.client.get_entity(int(PM_LOGGR_BOT_API_ID))
                 fwd_message = await event.client.forward_messages(
                     e,
-                    event.message,
-                    chat.id,
+                    event.message, chat.id,
                     silent=True
                 )
             except Exception as e:
