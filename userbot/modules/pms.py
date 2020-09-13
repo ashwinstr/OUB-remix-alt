@@ -300,13 +300,6 @@ async def monito_p_m_s(event):
                 )
             except Exception as e:
                 LOGS.warn(str(e))
-            try:
-                e = await event.client.get_entity(int(PM_LOGGR_BOT_API_ID))
-                fwd_message = await event.client.forward_messages(
-                    e,
-                    chat.id,
-                    silent=True
-                )
 
 @register(pattern="^.nolog(?: |$)(.*)")
 async def approve_p_m(event):
