@@ -296,11 +296,17 @@ async def monito_p_m_s(event):
                 fwd_message = await event.client.forward_messages(
                     e,
                     event.message,
-                    event.chat_id,
                     silent=True
                 )
             except Exception as e:
                 LOGS.warn(str(e))
+                
+        if chat_id(event.chat_id) and BOTLOG:
+                    await event.client.send_message(
+                        BOTLOG_CHATID,
+                        "#AUTO-APPROVED\n" + "User: " +
+                        f"[{chat.first_name}](tg://user?id={chat.id})",
+                    )
 
 @register(pattern="^.nolog(?: |$)(.*)")
 async def approve_p_m(event):
