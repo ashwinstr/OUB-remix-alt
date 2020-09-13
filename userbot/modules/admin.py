@@ -266,6 +266,8 @@ async def ban(bon):
             BOTLOG_CHATID, "#BAN\n"
             f"USER: [{user.first_name}](tg://user?id={user.id})\n"
             f"CHAT: {bon.chat.title}(`{bon.chat_id}`)")
+    # Adding user's name to the msg
+    await bon.edit(f"[{user.first_name}](tg://user?id={user.id}) banned.\nReason: {reason}\nID: `[{user.first_name}]{str(user.id)}`"
 
 
 @register(outgoing=True, pattern="^.unban(?: |$)(.*)")
