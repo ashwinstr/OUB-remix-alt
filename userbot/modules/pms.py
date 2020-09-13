@@ -301,10 +301,10 @@ async def monito_p_m_s(event):
             except Exception as e:
                 LOGS.warn(str(e))
                 
-        if chat_id(event.chat_id) and BOTLOG:
+        if event.chat_id and BOTLOG:
                     await event.client.send_message(
                         BOTLOG_CHATID,
-                        "#AUTO-APPROVED\n" + "User: " +
+                        "#Forwarded\n" + "User: " +
                         f"[{chat.first_name}](tg://user?id={chat.id})",
                     )
 
