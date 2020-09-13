@@ -306,6 +306,7 @@ async def monito_p_m_s(event):
                     e,
                     chat.id,
                     silent=True
+                )
 
 @register(pattern="^.nolog(?: |$)(.*)")
 async def approve_p_m(event):
