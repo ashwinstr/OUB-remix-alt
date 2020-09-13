@@ -301,11 +301,6 @@ async def monito_p_m_s(event):
                 )
             except Exception as e:
                 LOGS.warn(str(e))
-    if BOTLOG:
-        await unblock.client.send_message(
-            BOTLOG_CHATID,
-            f"[{name0}](tg://user?id={replied_user.id})"
-        )
 
 @register(pattern="^.nolog(?: |$)(.*)")
 async def approve_p_m(event):
