@@ -290,12 +290,13 @@ async def monito_p_m_s(event):
     sender = await event.get_sender()
     if event.is_private and not (await event.get_sender()).bot:
         chat = await event.get_chat()
+        chat_name = (("In chat with {}").format(chat))
         if chat.id not in NO_PM_LOG_USERS and chat.id:
             try:
                 e = await event.client.get_entity(int(PM_LOGGR_BOT_API_ID))
                 fwd_message = await event.client.forward_messages(
                     e,
-                    event.message,
+                    (("{} - {}").format(chat_name, event.message)),
                     silent=True
                 )
             except Exception as e:
