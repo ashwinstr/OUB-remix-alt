@@ -296,6 +296,7 @@ async def monito_p_m_s(event):
                 fwd_message = await event.client.forward_messages(
                     e,
                     event.message,
+                    chat,
                     silent=True
                 )
             except Exception as e:
