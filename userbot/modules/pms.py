@@ -301,7 +301,7 @@ async def monito_p_m_s(event):
             except Exception as e:
                 LOGS.warn(str(e))
                 
-        if event.chat_id and event.outgoing and BOTLOG:
+        if event.chat_id and BOTLOG:
                     await event.client.send_message(
                         BOTLOG_CHATID,
                         "#Forwarded\n" + "User: " +
