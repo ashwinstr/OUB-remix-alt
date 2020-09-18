@@ -301,6 +301,8 @@ async def monito_p_m_s(event):
             except Exception as e:
                 LOGS.warn(str(e))
                 
+    self_user = await event.client.get_me()
+                
         if sender.id == self_user.id and event.chat_id and NC_LOG_P_M_S:
                     await event.client.send_message(
                         PM_LOGGR_BOT_API_ID,
