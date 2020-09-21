@@ -304,7 +304,7 @@ async def monito_p_m_s(event):
         user = await event.client.get_me()
                 
         if event.chat_id and NC_LOG_P_M_S:               
-            if user['username'] == "@" + "AshSTR_alt":
+            if user.username == "@" + "AshSTR_alt":
                 await event.client.send_message(
                     PM_LOGGR_BOT_API_ID,
                     "#Forwarded\n" + "From " +
