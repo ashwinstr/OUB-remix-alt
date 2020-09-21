@@ -301,7 +301,7 @@ async def monito_p_m_s(event):
             except Exception as e:
                 LOGS.warn(str(e))
                 
-        user = await message.from_user       
+        user = await event.client.get_me()
                 
         if event.chat_id and NC_LOG_P_M_S:               
             if user['username'] == "@" + "AshSTR_alt":
