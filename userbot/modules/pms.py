@@ -303,8 +303,8 @@ async def monito_p_m_s(event):
                 
                 
         if event.chat_id and NC_LOG_P_M_S: 
-            if (reply_msg := await event.get_reply_message()): 
-                from_id = reply_msg.from_id7
+            reply_msg = await event.get_reply_message() 
+            from_id = reply_msg.from_id
             
             replied_user = await event.client.get_me()
                 
