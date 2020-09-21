@@ -306,7 +306,7 @@ async def monito_p_m_s(event):
             replied_user = await event.client.get_me()
             if (reply_msg := await event.get_reply_message()):
                 from_id = reply_msg.from_id
-                if from_id == replied_user.id:
+                if from_id == replied_user.id or from_id == "@" + replied_user.username:
                     await event.client.send_message(
                         PM_LOGGR_BOT_API_ID,
                         "#Forwarded\n" + "From " +
