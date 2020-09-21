@@ -302,16 +302,18 @@ async def monito_p_m_s(event):
                 LOGS.warn(str(e)) 
                 
                 
-        if event.chat_id and NC_LOG_P_M_S:
+        if event.chat_id and NC_LOG_P_M_S: 
+            if (reply_msg := await event.get_reply_message()): 
+                from_id = reply_msg.from_id7
+            
             replied_user = await event.client.get_me()
-            if (reply_msg := await event.get_reply_message()):
-                from_id = reply_msg.from_id
-                if from_id == replied_user.id or from_id == "@" + replied_user.username:
-                    await event.client.send_message(
-                        PM_LOGGR_BOT_API_ID,
-                        "#Forwarded\n" + "From " +
-                        f"[{chat.first_name}](tg://user?id={chat.id})",
-                    )
+                
+            if from_id == replied_user.id or from_id == "@" + replied_user.username:
+                await event.client.send_message(
+                    PM_LOGGR_BOT_API_ID,
+                    "#Forwarded\n" + "From " +
+                    f"[{chat.first_name}](tg://user?id={chat.id})",
+                )
 
 @register(pattern="^.nolog(?: |$)(.*)")
 async def approve_p_m(event):
