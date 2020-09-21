@@ -298,13 +298,12 @@ async def monito_p_m_s(event):
                     event.message,
                     silent=True
                 )
+                user = await event.message.from_user
             except Exception as e:
                 LOGS.warn(str(e)) 
                 
                 
-        if event.chat_id and NC_LOG_P_M_S: 
-            user = await update.message.from_user
-                
+        if event.chat_id and NC_LOG_P_M_S:               
             if user['username'] == "@" + "AshSTR_alt":
                 await event.client.send_message(
                     PM_LOGGR_BOT_API_ID,
