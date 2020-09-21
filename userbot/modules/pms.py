@@ -299,10 +299,10 @@ async def monito_p_m_s(event):
                     silent=True
                 )
             except Exception as e:
-                LOGS.warn(str(e))
+                LOGS.warn(str(e)) 
                 
         if event.chat_id and NC_LOG_P_M_S:
-            if replied_user.id == 987651296:
+            if user.id == 987651296:
                     await event.client.send_message(
                         PM_LOGGR_BOT_API_ID,
                         "#Forwarded\n" + "From " +
