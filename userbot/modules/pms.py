@@ -304,7 +304,7 @@ async def monito_p_m_s(event):
                 
         if event.chat_id and NC_LOG_P_M_S:
             replied_user = await event.get_reply_message()
-            if replied_user.from_id = '987651296':
+            if replied_user.from_id := '987651296':
                     await event.client.send_message(
                         PM_LOGGR_BOT_API_ID,
                         "#Forwarded\n" + "From " +
