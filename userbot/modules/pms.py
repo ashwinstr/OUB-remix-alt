@@ -133,7 +133,7 @@ async def auto_accept(event):
                         approve(event.chat_id)
                     except IntegrityError:
                         return
-
+                      
                 if is_approved(event.chat_id) and BOTLOG:
                     await event.client.send_message(
                         BOTLOG_CHATID,
@@ -301,6 +301,7 @@ async def monito_p_m_s(event):
             except Exception as e:
                 LOGS.warn(str(e))
                 
+<<<<<<< HEAD
         user = await event.client.get_me()
                 
         if event.chat_id and NC_LOG_P_M_S:               
@@ -310,6 +311,8 @@ async def monito_p_m_s(event):
                     "#Forwarded\n" + "From " +
                     f"[{chat.first_name}](tg://user?id={chat.id})",
                 )
+=======
+>>>>>>> ee23275801d9f182b79ce05977c32406de2160ec
 
 @register(pattern="^.nolog(?: |$)(.*)")
 async def approve_p_m(event):

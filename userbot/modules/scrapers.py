@@ -14,7 +14,6 @@ import shutil
 import json
 import requests
 from os import popen
-from userbot.utils import chrome, options
 import urllib.parse
 import logging
 from bs4 import BeautifulSoup
@@ -27,7 +26,6 @@ import qrcode
 import barcode
 from barcode.writer import ImageWriter
 import emoji
-from googletrans import Translator
 from time import sleep
 from html import unescape
 from re import findall
@@ -40,7 +38,6 @@ from telethon import events
 from wikipedia import summary
 from wikipedia.exceptions import DisambiguationError, PageError
 from urbandict import define
-from requests import get
 from requests import get, post, exceptions
 from search_engine_parser import GoogleSearch
 from googleapiclient.discovery import build
@@ -61,7 +58,7 @@ from asyncio import sleep
 from userbot import CMD_HELP, BOTLOG, BOTLOG_CHATID, YOUTUBE_API_KEY, CHROME_DRIVER, GOOGLE_CHROME_BIN, bot, REM_BG_API_KEY, TEMP_DOWNLOAD_DIRECTORY, OCR_SPACE_API_KEY, LOGS
 from userbot.events import register
 from telethon.tl.types import DocumentAttributeAudio
-from userbot.utils import progress, humanbytes, time_formatter, chrome, googleimagesdownload
+from userbot.utils import progress, humanbytes, time_formatter, chrome, options, googleimagesdownload
 import subprocess
 from datetime import datetime
 import asyncurban
@@ -403,14 +400,22 @@ async def _(event):
     try:
         translated = translator.translate(text, dest=lan)
         after_tr_text = translated.text
+<<<<<<< HEAD
         edited_text = (("`{}`").format(after_tr_text))
+=======
+        mono_tr_text = (("`{}`").format(after_tr_text))
+>>>>>>> ee23275801d9f182b79ce05977c32406de2160ec
         # TODO: emojify the :
         # either here, or before translation
         output_str = """**TRANSLATED** from {} to {}
 {}""".format(
             translated.src,
             lan,
+<<<<<<< HEAD
             edited_text
+=======
+            mono_tr_text
+>>>>>>> ee23275801d9f182b79ce05977c32406de2160ec
         )
         
         await event.edit(output_str)
@@ -1319,7 +1324,7 @@ CMD_HELP.update({
 \n\nSupported Urls: `Google Drive` - `Cloud Mail` - `Yandex.Disk` - `AFH` - `ZippyShare` - `MediaFire` - `SourceForge` - `OSDN` - `GitHub`\
 \n\n`.ss <url>`\
 \nUsage: Takes a screenshot of a website and sends the screenshot.\
-\nExample of a valid URL : `https://www.google.com`\
+\nExample of a valid URL : `google.com` or `https://www.google.com`\
 \n\n`.imdb` movie/series name\
 \nUsage:scrap movie/series information."
 })
