@@ -2,6 +2,7 @@
 
 
 $repo="C:\Users\ashwi\Documents\GitHub\oub-remix-alt"
+Remove-Item $repo
 
 Write-Host "You're running the OUB-remix update script."
 Write-Host " "
