@@ -301,18 +301,6 @@ async def monito_p_m_s(event):
             except Exception as e:
                 LOGS.warn(str(e))
                 
-<<<<<<< HEAD
-        user = await event.client.get_me()
-                
-        if event.chat_id and NC_LOG_P_M_S:               
-            if user.username == "@AshSTR_alt":
-                await event.client.send_message(
-                    PM_LOGGR_BOT_API_ID,
-                    "#Forwarded\n" + "From " +
-                    f"[{chat.first_name}](tg://user?id={chat.id})",
-                )
-=======
->>>>>>> ee23275801d9f182b79ce05977c32406de2160ec
 
 @register(pattern="^.nolog(?: |$)(.*)")
 async def approve_p_m(event):
