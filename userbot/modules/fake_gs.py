@@ -4,8 +4,11 @@ from PIL import Image, ImageDraw, ImageFont
 from telethon.tl.types import DocumentAttributeFilename
 from wget import download
 
+from userbot import CMD_HELP, bot
+from userbot.events import register
+
 @register(outgoing=True, pattern="^.fgs (.*)")
-async def FakeGoogleSearch(message: Message):
+async def FakeGoogleSearch(event):
     """ Get a user-customised google search meme! """
     text = message.input_str
     if not text:
