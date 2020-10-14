@@ -11,7 +11,7 @@ from userbot.events import register
 async def FakeGoogleSearch(event):
     """ Get a user-customised google search meme! """
     input_str = event.pattern_match.group(1)
-    if not event.input_str:
+    if input_str is None:
         await event.edit("No input found!", del_in=5)
         return
     if ";" in text:
