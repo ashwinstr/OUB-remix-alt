@@ -10,6 +10,7 @@ from userbot.events import register
 @register(outgoing=True, pattern="^.fgs (.*)")
 async def FakeGoogleSearch(event):
     """ Get a user-customised google search meme! """
+    input_str = event.pattern_match.group(1)
     if not event.input_str:
         await event.edit("No input found!", del_in=5)
         return
