@@ -10,13 +10,14 @@ from userbot.events import register
 @register(outgoing=True, pattern="^.fgs (.*)")
 async def FakeGoogleSearch(event):
     """ Get a user-customised google search meme! """
-    text = message.input_str
-    if not text:
-        return await message.err("No input found!", del_in=5)
+    if not event.input_str:
+        await event.edit("No input found!", del_in=5)
+        return
     if ";" in text:
         search, result = text.split(";", 1)
     else: 
-        return await message.err("Invalid Input! Check help for more info!", del_in=5)
+        await event.edit("Invalid Input! Check help for more info!", del_in=5)
+        return
       
     await message.edit('Connecting to `https://www.google.com/` ...')
     await asyncio.sleep(2)
