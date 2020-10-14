@@ -39,3 +39,11 @@ async def FakeGoogleSearch(event):
         'downloads/test.jpg',
         reply_to_message_id=reply_id)
     os.remove('downloads/test.jpg')
+
+    CMD_HELP.update(
+    {
+        "fake_google_search": "`.fgs`\n"
+        "Usage: Get a user-customised google search meme!\n\n"
+        "`.fgs [UpperText] ; [LowerText]`\n"
+    }
+)
