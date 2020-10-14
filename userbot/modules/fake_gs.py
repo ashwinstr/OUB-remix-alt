@@ -1,7 +1,7 @@
 import asyncio
 import os 
 from PIL import Image, ImageDraw, ImageFont
-from userge import userge, Message
+from userbot import userbot, Message
 from wget import download
 
 @register(outgoing=True, pattern="^.fgs (.*)")
