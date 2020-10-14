@@ -1,7 +1,7 @@
 import asyncio
 import os 
 from PIL import Image, ImageDraw, ImageFont
-from userbot import Message
+from telethon.tl.types import DocumentAttributeFilename
 from wget import download
 
 @register(outgoing=True, pattern="^.fgs (.*)")
