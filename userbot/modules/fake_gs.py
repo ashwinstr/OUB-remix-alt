@@ -20,7 +20,7 @@ async def FakeGoogleSearch(event):
         await event.edit("Invalid Input! Check help for more info!", del_in=5)
         return
       
-    await message.edit('Connecting to `https://www.google.com/` ...')
+    await event.edit('Connecting to `https://www.google.com/` ...')
     await asyncio.sleep(2)
     img='https://i.imgur.com/wNFr5X2.jpg'
     r=download(img)
