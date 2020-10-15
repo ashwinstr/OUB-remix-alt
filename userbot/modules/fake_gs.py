@@ -33,7 +33,7 @@ async def FakeGoogleSearch(event):
     drawing.text((450, 258), result, fill=blue, font=font1)
     drawing.text((270, 37), search, fill=black, font=font2)
     photo.save("downloads/test.jpg")
-    reply = event.reply_to_message
+    reply = event.pattern_match.group(2)
     await event.delete()
     reply_id = reply.message_id if reply else None
     await event.client.send_photo(
