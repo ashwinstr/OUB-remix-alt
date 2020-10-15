@@ -312,7 +312,6 @@ async def _(event):
         await event.edit("No result found for **" + word + "**")
        
 @register(outgoing=True, pattern="^.meaning (.*)")
-
 async def _(event):
     word = event.pattern_match.group(1)
     dictionary = PyDictionary()
