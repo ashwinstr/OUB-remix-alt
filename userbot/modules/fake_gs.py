@@ -6,6 +6,7 @@ from wget import download
 
 from userbot import CMD_HELP, bot
 from userbot.events import register
+from userbot.utils import googleimagesdownload
 
 @register(outgoing=True, pattern="^.fgs ((.*) ; (.*))")
 async def FakeGoogleSearch(event):
