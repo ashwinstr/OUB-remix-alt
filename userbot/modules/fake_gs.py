@@ -7,14 +7,14 @@ from wget import download
 from userbot import CMD_HELP, bot
 from userbot.events import register
 
-@register(outgoing=True, pattern="^.fgs (.*)")
+@register(outgoing=True, pattern="^.fgs ((.*) ; (.*))")
 async def FakeGoogleSearch(event):
     """ Get a user-customised google search meme! """
     input_str = event.pattern_match.group(1)
     if input_str is None:
         await event.edit("No input found!", del_in=5)
         return
-    if ";" in text:
+    if ";" in event:
         search, result = text.split(";", 1)
     else: 
         await event.edit("Invalid Input! Check help for more info!", del_in=5)
