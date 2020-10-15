@@ -311,7 +311,21 @@ async def _(event):
     except asyncurban.WordNotFoundError:
         await event.edit("No result found for **" + word + "**")
        
-               
+@register(outgoing=True, pattern="^.meaning (.*)")
+
+async def _(event):
+    word = event.pattern_match.group(1)
+    dictionary = PyDictionary()
+    cat = dictionary.meaning(word)
+    output = f"**Word :** __{word}__\n\n"
+    try:
+        for a, b in cat.items():
+            output += f"**{a}**\n"
+            for i in b:
+                output += f"☞__{i}__\n"
+        await edit_or_reply(event, output)
+    except Exception:
+        await edit_or_reply(event, f"Couldn't fetch meaning of {word}")           
 
 @register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
 async def text_to_speech(query):
