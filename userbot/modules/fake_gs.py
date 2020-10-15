@@ -15,7 +15,7 @@ async def FakeGoogleSearch(event):
         await event.edit("No input found!", del_in=5)
         return
     if ";" in input_str:
-        search, result = text.split(";", 1)
+        search, result = input_str.split(";", 1)
     else: 
         await event.edit("Invalid Input! Check help for more info!", del_in=5)
         return
