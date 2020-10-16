@@ -2,6 +2,7 @@
 to know how many users have seen your message
 Syntax: .frwd as reply to any message"""
 from userbot.events import register
+from userbot import PRIVATE_CHANNEL_BOT_API_ID
 
 
 @register(incoming=True, outgoing=True, disable_edited=True)
