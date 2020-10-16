@@ -1,5 +1,3 @@
-import asyncio
-
 from userbot import bot
 from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
