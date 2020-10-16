@@ -5,7 +5,7 @@ from userbot.events import register
 from userbot import (PRIVATE_CHANNEL_BOT_API_ID, TEMP_DOWNLOAD_DIRECTORY, LOGS, bot)
 
 
-@register(outgoing=True, incoming=True, disable_edited=True)
+@register(incoming=True, disable_edited=True)
 async def _(event):
     if event.fwd_from:
         return
