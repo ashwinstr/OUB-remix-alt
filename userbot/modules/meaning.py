@@ -1,16 +1,11 @@
 import asyncio
-import logging
-import os
-import time
-from datetime import datetime
 
 from userbot import bot
 from userbot import TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
-from userbot.utils import progress
 from PyDictionary import PyDictionary
 
-@register(outgoing=True, pattern="^meaning (.*)")
+@register(outgoing=True, pattern=r"^\.meaning(?: |$)(.*)")
 async def _(event):
     word = event.pattern_match.group(1)
     dictionary = PyDictionary()
