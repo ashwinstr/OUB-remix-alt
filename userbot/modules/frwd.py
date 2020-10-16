@@ -14,7 +14,7 @@ async def _(event):
     except Exception as e:
         LOGS.warn(str(e))
     else:
-        re_message = await event.client.get_reply_message()
+        re_message = await event.pattern_match.group(1)
         # https://t.me/telethonofftopic/78166
         fwd_message = await event.client.forward_messages(e, re_message, silent=True)
         await event.client.forward_messages(event.chat_id, fwd_message)
