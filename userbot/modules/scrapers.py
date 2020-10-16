@@ -62,7 +62,7 @@ from userbot.utils import progress, humanbytes, time_formatter, chrome, options,
 import subprocess
 from datetime import datetime
 import asyncurban
-import PyDictionary
+from PyDictionary import PyDictionary
 
 CARBONLANG = "auto"
 TTS_LANG = "en"
@@ -315,16 +315,16 @@ async def _(event):
 async def _(event):
     word = event.pattern_match.group(1)
     dictionary = PyDictionary()
-    cat = dictionary.meaning(word)
+    words = dictionary.meaning(word)
     output = f"**Word :** __{word}__\n\n"
     try:
-        for a, b in cat.items():
+        for a, b in words.items():
             output += f"**{a}**\n"
             for i in b:
                 output += f"☞__{i}__\n"
-        await edit_or_reply(event, output)
+        await event.edit(output)
     except Exception:
-        await edit_or_reply(event, f"Couldn't fetch meaning of {word}")           
+        await event.edit(f"Couldn't fetch meaning of {word}")           
 
 @register(outgoing=True, pattern=r"^.tts(?: |$)([\s\S]*)")
 async def text_to_speech(query):
