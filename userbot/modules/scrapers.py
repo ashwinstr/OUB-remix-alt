@@ -62,7 +62,7 @@ from userbot.utils import progress, humanbytes, time_formatter, chrome, options,
 import subprocess
 from datetime import datetime
 import asyncurban
-from PyDictionary import PyDictionary
+import PyDictionary
 
 CARBONLANG = "auto"
 TTS_LANG = "en"
