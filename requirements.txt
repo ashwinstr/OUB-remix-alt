@@ -88,3 +88,4 @@ twitter_scraper
 pyaztro
 jikanpy
 PyDictionary
+PyDictionary
