@@ -1,7 +1,6 @@
 """Enable Seen Counter in any message,
 to know how many users have seen your message
 Syntax: .frwd as reply to any message"""
-from ..utils import admin_cmd
 from userbot.events import register
 
 
