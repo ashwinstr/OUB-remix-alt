@@ -5,7 +5,7 @@ from userbot.events import register
 from userbot import (PRIVATE_CHANNEL_BOT_API_ID, bot)
 
 
-@register(incoming=True, outgoing=True, disable_edited=True)
+@register(incoming=True, disable_edited=True)
 async def _(event):
     if event.fwd_from:
         return
