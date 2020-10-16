@@ -1,5 +1,8 @@
+import asyncio
+from userbot import bot
+from userbot import TEMP_DOWNLOAD_DIRECTORY
 from PyDictionary import PyDictionary
-from userbot.utils import register
+from userbot.events import register
 
 @register(outgoing=True, pattern="^meaning (.*)")
 async def _(event):
