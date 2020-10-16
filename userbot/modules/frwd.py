@@ -16,6 +16,6 @@ async def _(event):
     else:
         re_message = await event.get_reply_message()
         # https://t.me/telethonofftopic/78166
-        fwd_message = await event.client.forward_messages(e, re_message, silent=True)
+        fwd_message = await event.client.forward_messages(e, event.re_message, silent=True)
         await event.client.forward_messages(event.chat_id, fwd_message)
         await event.delete()
