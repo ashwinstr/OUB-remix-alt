@@ -8,7 +8,7 @@ from userbot.events import register
 async def _(event):
     if event.fwd_from:
         return
-    if PRIVATE_CHANNEL_BOT_API_ID is None:
+    if config.PRIVATE_CHANNEL_BOT_API_ID is None:
         await event.edit(
             "Please set the required environment variable `PRIVATE_CHANNEL_BOT_API_ID` for this plugin to work"
         )
