@@ -1,7 +1,6 @@
 # Copyright (C) 2020 BY - GitHub.com/code-rgb [TG - @deleteduser420]
 # All rights reserved.
 
-from userbot import Config, Message
 from telethon.types import CallbackQuery
 from telethon import filters
 import json
