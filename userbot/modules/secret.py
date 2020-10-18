@@ -1,7 +1,7 @@
 # Copyright (C) 2020 BY - GitHub.com/code-rgb [TG - @deleteduser420]
 # All rights reserved.
 
-from telethon.types import CallbackQuery
+from telethon.tl.types import CallbackQuery
 from telethon import filters
 import json
 import os
