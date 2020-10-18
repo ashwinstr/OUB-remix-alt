@@ -9,6 +9,11 @@ from userbot import (PRIVATE_CHANNEL_BOT_API_ID, TEMP_DOWNLOAD_DIRECTORY, LOGS, 
 async def _(event):
     if event.fwd_from:
         return
+    if PRIVATE_CHANNEL_BOT_API_ID is None:
+        await event.edit(
+            "Please set the required environment variable `PRIVATE_CHANNEL_BOT_API_ID` for this plugin to work"
+        )
+        return
     try:
         e = await event.client.get_entity(int(PRIVATE_CHANNEL_BOT_API_ID))
     except Exception as e:
