@@ -6,7 +6,7 @@ import io
 #import sql_helpers.no_log_pms_sql as no_log_pms_sql
 import userbot.modules.sql_helper.pm_permit_sql as pm_permit_sql
 from telethon import events, errors, functions, types
-from userbot.utils import admin_cmd
+#from userbot.utils import admin_cmd
 from userbot.events import register
 
 REMIX_USER_BOT_WARN_ZERO = "I am currently offline. Please do not SPAM me."
