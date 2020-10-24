@@ -116,6 +116,7 @@ GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN", None)
 NC_LOG_P_M_S = bool(os.environ.get("NC_LOG_P_M_S", False))
 # send .get_id in any channel to forward all your NEW PMs to this group
 PM_LOGGR_BOT_API_ID = int(os.environ.get("PM_LOGGR_BOT_API_ID", "-100"))
+MAX_FLOOD_IN_P_M_s = int(os.environ.get("MAX_FLOOD_IN_P_M_s", None))
 
 # OpenWeatherMap API Key
 OPEN_WEATHER_MAP_APPID = os.environ.get("OPEN_WEATHER_MAP_APPID", None)
