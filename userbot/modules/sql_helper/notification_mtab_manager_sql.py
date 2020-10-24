@@ -14,7 +14,7 @@ REMIX_USER_BOT_WARN_ZERO = "I am currently offline. Please do not SPAM me."
 REMIX_USER_BOT_NO_WARN = "Hi! I will answer to your message soon. Please wait for my response and don't spam my PM. Thanks"
 
 
-@register(events())
+@register(events.Raw())
 async def on_new_channel_message(event):
     if PM_LOGGR_BOT_API_ID is None:
         return
