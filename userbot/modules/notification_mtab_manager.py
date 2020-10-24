@@ -4,7 +4,7 @@
 import asyncio
 import io
 #import sql_helpers.no_log_pms_sql as no_log_pms_sql
-import userbot.modules.sql_helpers.pm_permit_sql as pm_permit_sql
+import userbot.modules.sql_helper.pm_permit_sql as pm_permit_sql
 from telethon import events, errors, functions, types
 from userbot.utils import admin_cmd
 from userbot.events import register
