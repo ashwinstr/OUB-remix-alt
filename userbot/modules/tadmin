@@ -12,83 +12,81 @@ from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, extract_time
 from userbot.events import register
 
 # =================== CONSTANT ===================
-NO_ADMIN = "`I am not an admin nub nibba!`"
-NO_PERM = "`I don't have sufficient permissions! This is so sed. Alexa play despacito`"
+NO_ADMIN = "`I am not an admin!`"
+NO_PERM = "`I don't have sufficient permissions!`"
 
 
-@register(admin_cmd(pattern=r"tmute(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern=r"tmute(?: |$)(.*)", allow_sudo=True))
-@errors_handler
-async def tmuter(catty):
-    chat = await catty.get_chat()
+@register(outgoing=True, pattern="^tmute(?: |$)(.*)")
+async def tmuter(tmut):
+    chat = await tmut.get_chat()
     admin = chat.admin_rights
     creator = chat.creator
     # If not admin and not creator, return
     if not admin and not creator:
-        await edit_or_reply(catty, NO_ADMIN)
+        await tmut.edit(NO_ADMIN)
         return
-    catevent = await edit_or_reply(catty, "`muteing....`")
-    user, reason = await get_user_from_event(catty)
+    await tmut.edit("`muting....`")
+    user, reason = await get_user_from_event(tmut)
     if not user:
         return
     if reason:
         reason = reason.split(" ", 1)
         hmm = len(reason)
-        cattime = reason[0]
+        tmuttime = reason[0]
         reason = reason[1] if hmm == 2 else None
     else:
-        await catevent.edit("you havent mentioned time check `.info tadmin`")
+        await tmut.edit("you havent mentioned time check `.help tadmin`")
         return
-    self_user = await catty.client.get_me()
-    ctime = await extract_time(catty, cattime)
-    if not ctime:
-        await catevent.edit(
-            f"Invalid time type specified. Expected m , h , d or w not as {cattime}"
+    self_user = await tmut.client.get_me()
+    mtime = await extract_time(tmut, tmuttime)
+    if not mtime:
+        await tmut.edit(
+            f"Invalid time type specified. Expected m , h , d or w not as {tmuttime}"
         )
         return
     if user.id == self_user.id:
-        await catevent.edit(f"Sorry, I can't mute my self")
+        await tmut.edit(f"Sorry, I can't mute my self")
         return
     try:
-        await catevent.client(
+        await tmut.client(
             EditBannedRequest(
-                catty.chat_id,
+                tmut.chat_id,
                 user.id,
-                ChatBannedRights(until_date=ctime, send_messages=True),
+                ChatBannedRights(until_date=mtime, send_messages=True),
             )
         )
         # Announce that the function is done
         if reason:
-            await catevent.edit(
-                f"{user.first_name} was muted in {catty.chat.title}\n"
-                f"**Mutted for : **{cattime}\n"
+            await tmut.edit(
+                f"{user.first_name} was muted in {tmut.chat.title}\n"
+                f"**Mutted for : **{tmuttime}\n"
                 f"**Reason : **__{reason}__"
             )
             if BOTLOG:
-                await catty.client.send_message(
+                await tmut.client.send_message(
                     BOTLOG_CHATID,
                     "#TMUTE\n"
                     f"**User : **[{user.first_name}](tg://user?id={user.id})\n"
-                    f"**Chat : **{catty.chat.title}(`{catty.chat_id}`)\n"
-                    f"**Mutted for : **`{cattime}`\n"
+                    f"**Chat : **{tmut.chat.title}(`{tmut.chat_id}`)\n"
+                    f"**Mutted for : **`{tmuttime}`\n"
                     f"**Reason : **`{reason}``",
                 )
         else:
-            await catevent.edit(
-                f"{user.first_name} was muted in {catty.chat.title}\n"
-                f"Mutted for {cattime}\n"
+            await tmut.edit(
+                f"{user.first_name} was muted in {tmut.chat.title}\n"
+                f"Mutted for {tmuttime}\n"
             )
             if BOTLOG:
-                await catty.client.send_message(
+                await tmut.client.send_message(
                     BOTLOG_CHATID,
                     "#TMUTE\n"
                     f"**User : **[{user.first_name}](tg://user?id={user.id})\n"
-                    f"**Chat : **{catty.chat.title}(`{catty.chat_id}`)\n"
-                    f"**Mutted for : **`{cattime}`",
+                    f"**Chat : **{tmut.chat.title}(`{tmut.chat_id}`)\n"
+                    f"**Mutted for : **`{tmuttime}`",
                 )
         # Announce to logging group
     except UserIdInvalidError:
-        return await catevent.edit("`Uh oh my mute logic broke!`")
+        return await tmut.edit("`Uh oh my mute logic broke!`")
 
 
 @borg.on(admin_cmd(pattern="tban(?: |$)(.*)"))
