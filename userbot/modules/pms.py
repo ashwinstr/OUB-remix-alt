@@ -300,6 +300,7 @@ async def monito_p_m_s(event):
                 )
             except Exception as e:
                 LOGS.warn(str(e))
+                
         self_user = await event.client.get_me()
                 
         if user.id == self_user.id:
