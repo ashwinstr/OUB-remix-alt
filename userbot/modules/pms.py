@@ -303,7 +303,7 @@ async def monito_p_m_s(event):
                 
         if user.id == self_user.id:
             return
-        elseif: event.chat_id and NC_LOG_P_M_S:
+            if event.chat_id and NC_LOG_P_M_S:
                     await event.client.send_message(
                         PM_LOGGR_BOT_API_ID,
                         "#Forwarded\n" + "From " +
