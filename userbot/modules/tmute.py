@@ -87,3 +87,15 @@ async def tmuter(tmut):
         # Announce to logging group
     except UserIdInvalidError:
         return await tmut.edit("`Uh oh my mute logic broke!`")
+
+CMD_HELP.update(
+    {
+        "tadmin": "**Plugin :** `tadmin`\
+      \n\n**Syntax : **`.tmute <reply/username/userid> <time> <reason>`\
+      \n**Usage : **Temporary mutes the user for given time.\
+      \n\n**Syntax : **`.tban <reply/username/userid> <time> <reason>`\
+      \n**Usage : **Temporary bans the user for given time.\
+      \n\n**Time units : ** (2m = 2 minutes) ,(3h = 3hours)  ,(4d = 4 days) ,(5w = 5 weeks)\
+      This times are example u can use anything with thoose untis "
+    }
+)
