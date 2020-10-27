@@ -175,7 +175,7 @@ async def ban(tbun):
             )
 
 
-"""async def get_user_from_event(event):
+async def get_user_from_event(event):
     """ Get the user from argument or replied message. """
     args = event.pattern_match.group(1).split(" ", 1)
     extra = None
@@ -214,7 +214,7 @@ async def get_user_from_id(user, event):
     except (TypeError, ValueError) as err:
         await event.edit(str(err))
         return None
-    return user_obj"""
+    return user_obj
 
 
 CMD_HELP.update(
