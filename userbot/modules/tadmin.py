@@ -89,7 +89,7 @@ async def tmuter(tmut):
         return await tmut.edit("`Uh oh my mute logic broke!`")
 
 
-@register(outgoing=True, pattern="^tban(?: |$)(.*)"))
+@register(outgoing=True, pattern="^tban(?: |$)(.*)")
 async def ban(tbun):
     chat = await tbun.get_chat()
     admin = chat.admin_rights
