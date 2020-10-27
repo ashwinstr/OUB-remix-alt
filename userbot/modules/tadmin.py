@@ -8,7 +8,7 @@ from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights, MessageEntityMentionName
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
-from .tools import time_formatter
+from userbot.utils.tools import time_formatter
 from userbot.events import register
 
 # =================== CONSTANT ===================
