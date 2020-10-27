@@ -16,7 +16,7 @@ NO_ADMIN = "`I am not an admin!`"
 NO_PERM = "`I don't have sufficient permissions!`"
 
 
-@register(outgoing=True, pattern="^tmute(?: |$)(.*)")
+@register(outgoing=True, pattern="^.tmute(?: |$)(.*)")
 async def tmuter(tmut):
     chat = await tmut.get_chat()
     admin = chat.admin_rights
