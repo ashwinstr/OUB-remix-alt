@@ -1,4 +1,5 @@
 import os
+import time
 import shlex
 import asyncio
 from os.path import basename
@@ -26,3 +27,29 @@ async def runcmd(cmd: str) -> Tuple[str, str, int, int]:
             stderr.decode('utf-8', 'replace').strip(),
             process.returncode,
             process.pid)
+
+async def extract_time(remix, time_val):
+    if any(time_val.endswith(unit) for unit in ("m", "h", "d", "w")):
+        unit = time_val[-1]
+        time_num = time_val[:-1]  # type: str
+        if not time_num.isdigit():
+            remix.edit("Invalid time amount specified.")
+            return ""
+        if unit == "m":
+            bantime = int(time.time() + int(time_num) * 60)
+        elif unit == "h":
+            bantime = int(time.time() + int(time_num) * 60 * 60)
+        elif unit == "d":
+            bantime = int(time.time() + int(time_num) * 24 * 60 * 60)
+        elif unit == "w":
+            bantime = int(time.time() + int(time_num) * 7 * 24 * 60 * 60)
+        else:
+            # how even...?
+            return ""
+        return bantime
+    remix.edit(
+        "Invalid time type specified. Expected m , h , d or w but got: {}".format(
+            time_val[-1]
+        )
+    )
+    return ""
