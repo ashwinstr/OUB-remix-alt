@@ -7,7 +7,8 @@ from telethon.errors.rpcerrorlist import UserIdInvalidError
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights, MessageEntityMentionName
 
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP, extract_time
+from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
+from .tools import time_formatter
 from userbot.events import register
 
 # =================== CONSTANT ===================
@@ -37,7 +38,7 @@ async def tmuter(tmut):
         await tmut.edit("you havent mentioned time check `.help tadmin`")
         return
     self_user = await tmut.client.get_me()
-    mtime = await extract_time(tmut, tmuttime)
+    mtime = await time_formatter(tmut, tmuttime)
     if not mtime:
         await tmut.edit(
             f"Invalid time type specified. Expected m , h , d or w not as {tmuttime}"
