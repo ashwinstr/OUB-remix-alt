@@ -38,7 +38,7 @@ async def tmuter(tmut):
         await tmut.edit("you havent mentioned time check `.help tadmin`")
         return
     self_user = await tmut.client.get_me()
-    mtime = await time_formatter(tmut, tmuttime)
+    mtime = await time_formatter(tmuttime)
     if not mtime:
         await tmut.edit(
             f"Invalid time type specified. Expected m , h , d or w not as {tmuttime}"
