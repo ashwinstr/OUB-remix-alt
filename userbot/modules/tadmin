@@ -1,6 +1,7 @@
 """
 idea from lynda and rose bot
 made by @mrconfused
+ported for OUB-remix by @ashwinstr (github), @AshSTR (tg)
 """
 from telethon.errors import BadRequestError
 from telethon.errors.rpcerrorlist import UserIdInvalidError
@@ -8,7 +9,7 @@ from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights, MessageEntityMentionName
 
 from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
-from userbot.utils.tools import time_formatter
+from userbot.utils.funtions import extract_time
 from userbot.events import register
 
 # =================== CONSTANT ===================
@@ -16,7 +17,7 @@ NO_ADMIN = "`I am not an admin!`"
 NO_PERM = "`I don't have sufficient permissions!`"
 
 
-@register(outgoing=True, pattern="^tmute(?: |$)(.*)")
+@register(outgoing=True, pattern="^.tmute(?: |$)(.*)")
 async def tmuter(tmut):
     chat = await tmut.get_chat()
     admin = chat.admin_rights
@@ -38,7 +39,7 @@ async def tmuter(tmut):
         await tmut.edit("you havent mentioned time check `.help tadmin`")
         return
     self_user = await tmut.client.get_me()
-    mtime = await time_formatter(tmut, tmuttime)
+    mtime = await extract_time(tmut, tmuttime)
     if not mtime:
         await tmut.edit(
             f"Invalid time type specified. Expected m , h , d or w not as {tmuttime}"
@@ -88,8 +89,7 @@ async def tmuter(tmut):
     except UserIdInvalidError:
         return await tmut.edit("`Uh oh my mute logic broke!`")
 
-
-@register(outgoing=True, pattern="^tban(?: |$)(.*)")
+@register(outgoing=True, pattern="^.tban(?: |$)(.*)")
 async def ban(tbun):
     chat = await tbun.get_chat()
     admin = chat.admin_rights
@@ -111,7 +111,7 @@ async def ban(tbun):
         await tbun.edit("you havent mentioned time check `.help tadmin`")
         return
     self_user = await tbun.client.get_me()
-    btime = await time_formatter(tbun, tbuntime)
+    btime = await extract_time(tbun, tbuntime)
     if not btime:
         await tbun.edit(
             f"Invalid time type specified. Expected m , h , d or w not as {tbuntime}"
@@ -225,6 +225,6 @@ CMD_HELP.update(
       \n\n**Syntax : **`.tban <reply/username/userid> <time> <reason>`\
       \n**Usage : **Temporary bans the user for given time.\
       \n\n**Time units : ** (2m = 2 minutes) ,(3h = 3hours)  ,(4d = 4 days) ,(5w = 5 weeks)\
-      This times are example u can use anything with thoose untis "
+      This times are example u can use anything with those units "
     }
 )
