@@ -303,7 +303,7 @@ async def monito_p_m_s(event):
             except Exception as e:
                 LOGS.warn(str(e))
                        
-        if sender.id == self_user.id:
+        if sender.id != self_user.id:
             return
             if event.chat_id and NC_LOG_P_M_S:
                     await event.client.send_message(
