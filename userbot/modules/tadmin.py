@@ -89,58 +89,56 @@ async def tmuter(tmut):
         return await tmut.edit("`Uh oh my mute logic broke!`")
 
 
-@borg.on(admin_cmd(pattern="tban(?: |$)(.*)"))
-@borg.on(sudo_cmd(pattern="tban(?: |$)(.*)", allow_sudo=True))
-@errors_handler
-async def ban(catty):
-    chat = await catty.get_chat()
+@register(outgoing=True, pattern="^tban(?: |$)(.*)"))
+async def ban(tbun):
+    chat = await tbun.get_chat()
     admin = chat.admin_rights
     creator = chat.creator
     # If not admin and not creator, return
     if not admin and not creator:
-        await edit_or_reply(catty, NO_ADMIN)
+        await tbun.edit(NO_ADMIN)
         return
-    catevent = await edit_or_reply(catty, "`baning....`")
-    user, reason = await get_user_from_event(catty)
+    await tbun.edit("`tbanning....`")
+    user, reason = await get_user_from_event(tbun)
     if not user:
         return
     if reason:
         reason = reason.split(" ", 1)
         hmm = len(reason)
-        cattime = reason[0]
+        tbuntime = reason[0]
         reason = reason[1] if hmm == 2 else None
     else:
-        await catevent.edit("you havent mentioned time check `.info tadmin`")
+        await tbun.edit("you havent mentioned time check `.help tadmin`")
         return
-    self_user = await catty.client.get_me()
-    ctime = await extract_time(catty, cattime)
-    if not ctime:
-        await catevent.edit(
-            f"Invalid time type specified. Expected m , h , d or w not as {cattime}"
+    self_user = await tbun.client.get_me()
+    btime = await time_formatter(tbun, tbuntime)
+    if not btime:
+        await tbun.edit(
+            f"Invalid time type specified. Expected m , h , d or w not as {tbuntime}"
         )
         return
     if user.id == self_user.id:
-        await catevent.edit(f"Sorry, I can't ban my self")
+        await tbun.edit(f"Sorry, I can't ban my self")
         return
-    await catevent.edit("`Whacking the pest!`")
+    await tbun.edit("`Whacking the pest!`")
     try:
-        await catty.client(
+        await tbun.client(
             EditBannedRequest(
-                catty.chat_id,
+                tbun.chat_id,
                 user.id,
-                ChatBannedRights(until_date=ctime, view_messages=True),
+                ChatBannedRights(until_date=btime, view_messages=True),
             )
         )
     except BadRequestError:
-        await catevent.edit(NO_PERM)
+        await tbun.edit(NO_PERM)
         return
     # Helps ban group join spammers more easily
     try:
-        reply = await catty.get_reply_message()
+        reply = await tbun.get_reply_message()
         if reply:
             await reply.delete()
     except BadRequestError:
-        await catevent.edit(
+        await tbun.edit(
             "`I dont have message nuking rights! But still he was banned!`"
         )
         return
@@ -148,36 +146,36 @@ async def ban(catty):
     # is done gracefully
     # Shout out the ID, so that fedadmins can fban later
     if reason:
-        await catevent.edit(
-            f"{user.first_name} was banned in {catty.chat.title}\n"
-            f"banned for {cattime}\n"
+        await tbun.edit(
+            f"{user.first_name} was banned in {tbun.chat.title}\n"
+            f"banned for {tbuntime}\n"
             f"Reason:`{reason}`"
         )
         if BOTLOG:
-            await catty.client.send_message(
+            await tbun.client.send_message(
                 BOTLOG_CHATID,
                 "#TBAN\n"
                 f"**User : **[{user.first_name}](tg://user?id={user.id})\n"
-                f"**Chat : **{catty.chat.title}(`{catty.chat_id}`)\n"
-                f"**Banned untill : **`{cattime}`\n"
+                f"**Chat : **{tbun.chat.title}(`{tbun.chat_id}`)\n"
+                f"**Banned untill : **`{tbuntime}`\n"
                 f"**Reason : **__{reason}__",
             )
     else:
-        await catevent.edit(
-            f"{user.first_name} was banned in {catty.chat.title}\n"
-            f"banned for {cattime}\n"
+        await tbun.edit(
+            f"{user.first_name} was banned in {tbun.chat.title}\n"
+            f"banned for {tbuntime}\n"
         )
         if BOTLOG:
-            await catty.client.send_message(
+            await tbun.client.send_message(
                 BOTLOG_CHATID,
                 "#TBAN\n"
                 f"**User : **[{user.first_name}](tg://user?id={user.id})\n"
-                f"**Chat : **{catty.chat.title}(`{catty.chat_id}`)\n"
-                f"**Banned untill : **`{cattime}`",
+                f"**Chat : **{tbun.chat.title}(`{tbun.chat_id}`)\n"
+                f"**Banned untill : **`{tbuntime}`",
             )
 
 
-async def get_user_from_event(event):
+"""async def get_user_from_event(event):
     """ Get the user from argument or replied message. """
     args = event.pattern_match.group(1).split(" ", 1)
     extra = None
@@ -216,7 +214,7 @@ async def get_user_from_id(user, event):
     except (TypeError, ValueError) as err:
         await event.edit(str(err))
         return None
-    return user_obj
+    return user_obj"""
 
 
 CMD_HELP.update(
