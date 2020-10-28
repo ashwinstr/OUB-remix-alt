@@ -28,7 +28,7 @@ async def tmuter(tmut):
         return
     await tmut.edit("`muting....`")
     user, reason = await get_user_from_event(tmut)
-    if user is admin:
+    if user is admin or user is creator:
         await tmut.edit("`Can't mute an admin.`")
         return
     if not user:
