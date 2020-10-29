@@ -101,6 +101,19 @@ async def log(log_text):
     await log_text.delete()
 
 
+@register(outgoing=True, pattern=r"^.logit1(?: |$)([\s\S]*)")
+async def log(log_text):
+    """ For .log command, forwards a message or the command argument to the bot logs group """
+    if BOTLOG:
+        if log_text.reply_to_msg_id:
+            reply_msg = await log_text.get_reply_message()
+            await reply_msg.forward_to(-1001493108444)
+    else:
+        await log_text.edit("`This feature requires Logging to be enabled!`")
+    await sleep(2)
+    await log_text.delete()
+    
+
 @register(outgoing=True, pattern="^.kickme$")
 async def kickme(leave):
     """ Basically it's .kickme command """
