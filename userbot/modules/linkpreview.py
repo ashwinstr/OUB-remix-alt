@@ -11,13 +11,13 @@ async def _(event):
         return
     reply_message = await event.get_reply_message()
     if not reply_message:
-        await event.edit(event, "```Reply to a Link.```")
+        await event.edit("```Reply to a Link.```")
         return
     if not reply_message.text:
-        await event.edit(event, "```Reply to a Link```")
+        await event.edit("```Reply to a Link```")
         return
     chat = "@chotamreaderbot"
-    await event.edit(event, "```Processing```")
+    await event.edit("```Processing```")
     async with event.client.conversation(chat) as conv:
         try:
             response = conv.wait_event(
