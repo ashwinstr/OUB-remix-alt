@@ -20,7 +20,7 @@ if BOT_TOKEN and BOT_USERNAME:
         
     @tgbot.on(
         msg_id = CallbackQuery.pattern_match.group(1)
-        if os.path.exists(SECRETS):
+        if os.path.isdir(SECRETS):
             view_data = json.load(open(SECRETS))
             sender = await CallbackQuery.get_me()
             msg = f"🔓 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 𝗳𝗿𝗼𝗺: {sender.first_name}"
