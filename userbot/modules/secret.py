@@ -19,7 +19,7 @@ if BOT_TOKEN and BOT_USERNAME:
         
     @tgbot.on(
         msg_id = CallbackQuery.pattern_match.group(1)
-        if os.path.exists(SECRETS):
+        if os.path.isdir(SECRETS):
             view_data = json.load(open(SECRETS))
             sender = await CallbackQuery.get_me()
             msg = f"🔓 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 𝗳𝗿𝗼𝗺: {sender.first_name}"
@@ -28,7 +28,7 @@ if BOT_TOKEN and BOT_USERNAME:
             receiver =  data['user_id']
             msg += data['msg']
             u_id = c_q.from_user.id
-            if u_id in [Config.OWNER_ID, receiver]:
+            if u_id in [OWNER_ID, receiver]:
                 await c_q.answer(msg, show_alert=True)
             else:
                 await c_q.answer("This Message is Confidential", show_alert=True)
