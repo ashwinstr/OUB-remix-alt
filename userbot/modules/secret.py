@@ -18,7 +18,7 @@ if BOT_TOKEN and BOT_USERNAME:
         ubot = userbot
 
        
-    @register(outgoing=True, pattern=r"^secret_(.*)")
+    @register(outgoing=True, pattern=r"^.secret_(.*)")
     async def alive_callback(c_q, CallbackQuery):
         msg_id = CallbackQuery.pattern_match.group(1)
         if os.path.exists(SECRETS):
