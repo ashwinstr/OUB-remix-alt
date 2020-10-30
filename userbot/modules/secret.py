@@ -6,6 +6,7 @@ import json
 import os
 from userbot import BOT_TOKEN, BOT_USERNAME, HU_STRING_SESSION, CMD_HELP, bot
 from userbot.event import register
+from events.callbackquery.CallbackQuery import CallbackQuery
 
 SECRETS = "userbot/modules/secret.txt"
 
@@ -17,7 +18,6 @@ if BOT_TOKEN and BOT_USERNAME:
         ubot = userbot
         
     @tgbot.on(
-        from events.callbackquery.CallbackQuery import CallbackQuery
         msg_id = CallbackQuery.pattern_match.group(1)
         if os.path.exists(SECRETS):
             view_data = json.load(open(SECRETS))
