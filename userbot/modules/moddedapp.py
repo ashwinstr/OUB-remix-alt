@@ -10,7 +10,7 @@ from telethon.tl.functions.messages import ImportChatInviteRequest
 from userbot.events import register
 
 
-@borg.on(outgoing=True, pattern="^.mod ?(.*)")
+@register(outgoing=True, pattern="^.mod ?(.*)")
 async def _(event):
     if event.fwd_from:
         return
