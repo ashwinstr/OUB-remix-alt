@@ -8,7 +8,7 @@ from telethon import filters
 from userbot.events.callbackquery.CallbackQuery import CallbackQuery
 from userbot.events import register
 
-SECRETS = "userge/xcache/secret.txt"
+SECRETS = "resources/secret.txt"
 
 
 if userbot.has_bot:
