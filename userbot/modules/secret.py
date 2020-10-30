@@ -34,3 +34,4 @@ if BOT_TOKEN and BOT_USERNAME:
                 await c_q.answer("This Message is Confidential", show_alert=True)
         else:
             await c_q.answer("This message doesn't exist anymore", show_alert=True)
+    )
