@@ -1,7 +1,6 @@
 # Copyright (C) 2020 BY - GitHub.com/code-rgb [TG - @deleteduser420]
 # All rights reserved.
 
-from userbot.events.callbackquery.CallbackQuery import CallbackQuery
 from telethon import filters
 import json
 import os
@@ -16,10 +15,9 @@ if BOT_TOKEN and BOT_USERNAME:
         ubot = userbot.bot
     else:
         ubot = userbot
-
-       
-    @register(outgoing=True, pattern=r"^.secret_(.*)")
-    async def alive_callback(c_q, CallbackQuery):
+        
+    @tgbot.on(
+        from events.callbackquery.CallbackQuery import CallbackQuery
         msg_id = CallbackQuery.pattern_match.group(1)
         if os.path.exists(SECRETS):
             view_data = json.load(open(SECRETS))
