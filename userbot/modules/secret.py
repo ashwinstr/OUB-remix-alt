@@ -7,6 +7,7 @@ import os
 from userbot import BOT_TOKEN, BOT_USERNAME, HU_STRING_SESSION, CMD_HELP, bot
 from userbot.event import register
 from events.callbackquery.CallbackQuery import CallbackQuery
+from os.path import exists, isdir
 
 SECRETS = "userbot/modules/secret.txt"
 
@@ -19,7 +20,7 @@ if BOT_TOKEN and BOT_USERNAME:
         
     @tgbot.on(
         msg_id = CallbackQuery.pattern_match.group(1)
-        if os.path.isdir(SECRETS):
+        if os.path.exists(SECRETS):
             view_data = json.load(open(SECRETS))
             sender = await CallbackQuery.get_me()
             msg = f"🔓 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 𝗳𝗿𝗼𝗺: {sender.first_name}"
