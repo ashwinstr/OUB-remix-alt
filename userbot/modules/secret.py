@@ -1,38 +1,57 @@
-# Copyright (C) 2020 BY - GitHub.com/code-rgb [TG - @deleteduser420]
-# All rights reserved.
+# thanks to @null7410  for callbackquery code
+# created by @sandy1709 and @mrconfused
+import re
 
-from telethon import filters
-import json
-import os
-from userbot import BOT_TOKEN, BOT_USERNAME, HU_STRING_SESSION, CMD_HELP, bot
-from userbot.event import register
-from events.callbackquery.CallbackQuery import CallbackQuery
-from os.path import exists, isdir
+from telethon import custom, events
 
-SECRETS = "userbot/modules/secret.txt"
+if TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
 
-
-if BOT_TOKEN and BOT_USERNAME:
-    if HU_STRING_SESSION:
-        ubot = userbot.bot
-    else:
-        ubot = userbot
-        
-    @tgbot.on(
-        msg_id = CallbackQuery.pattern_match.group(1)
-        if os.path.exists(SECRETS):
-            view_data = json.load(open(SECRETS))
-            sender = await CallbackQuery.get_me()
-            msg = f"🔓 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 𝗳𝗿𝗼𝗺: {sender.first_name}"
-            msg += f" {sender.last_name}\n" if sender.last_name else "\n"
-            data = view_data[msg_id]
-            receiver =  data['user_id']
-            msg += data['msg']
-            u_id = c_q.from_user.id
-            if u_id in [OWNER_ID, receiver]:
-                await c_q.answer(msg, show_alert=True)
-            else:
-                await c_q.answer("This Message is Confidential", show_alert=True)
-        else:
-            await c_q.answer("This message doesn't exist anymore", show_alert=True)
-    )
+    @tgbot.on(events.InlineQuery)
+    async def inline_handler(event):
+        result = None
+        query = event.text
+        hmm = re.compile("secret (.*) (.*)")
+        match = re.findall(hmm, query)
+        if event.query.user_id == bot.uid and match:
+            query = query[7:]
+            user, txct = query.split(" ", 1)
+            builder = event.builder
+            try:
+                # if u is user id
+                u = int(user)
+                buttons = [
+                    custom.Button.inline("show message 🔐", data=f"secret_{u}_ {txct}")
+                ]
+                try:
+                    u = await event.client.get_entity(u)
+                    if u.username:
+                        sandy = f"@{u.username}"
+                    else:
+                        sandy = f"[{u.first_name}](tg://user?id={u.id})"
+                except ValueError:
+                    # ValueError: Could not find the input entity
+                    sandy = f"[user](tg://user?id={u})"
+                result = builder.article(
+                    title="secret message",
+                    text=f"🔒 A whisper message to {sandy}, Only he/she can open it.",
+                    buttons=buttons,
+                )
+                await event.answer([result] if result else None)
+            except ValueError:
+                # if u is username
+                u = await event.client.get_entity(user)
+                buttons = [
+                    custom.Button.inline(
+                        "show message 🔐", data=f"secret_{u.id}_ {txct}"
+                    )
+                ]
+                if u.username:
+                    sandy = f"@{u.username}"
+                else:
+                    sandy = f"[{u.first_name}](tg://user?id={u.id})"
+                result = builder.article(
+                    title="secret message",
+                    text=f"🔒 A whisper message to {sandy}, Only he/she can open it.",
+                    buttons=buttons,
+                )
+                await event.answer([result] if result else None)
