@@ -3,9 +3,9 @@
 import re
 
 from telethon import custom, events
-from userbot import BOT_USERNAME, tgbot
+from userbot import BOT_USERNAME, BOT_TOKEN
 
-if BOT_USERNAME is not None and tgbot is not None:
+if BOT_USERNAME is not None and BOT_TOKEN is not None:
 
     @tgbot.on(events.InlineQuery)
     async def inline_handler(event):
