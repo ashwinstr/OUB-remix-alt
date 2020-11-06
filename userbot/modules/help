@@ -1,0 +1,73 @@
+import json
+import os
+import random
+import re
+from math import ceil
+from typing import Any, Callable, Dict, List, Union
+
+import requests
+import youtube_dl as ytdl
+from html_telegraph_poster import TelegraphPoster
+from telethon import filters
+from telethon.errors import BadRequest, MessageIdInvalid, MessageNotModified
+from telethon.types import (
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    InlineQuery,
+    InlineQueryResultAnimation,
+    InlineQueryResultArticle,
+    InlineQueryResultCachedDocument,
+    InlineQueryResultCachedPhoto,
+    InlineQueryResultPhoto,
+    InputTextMessageContent,
+)
+from events.callbackquery.CallbackQuery import CallbackQuery
+
+from userge import Config, Message, get_collection, get_version, userge, versions
+from userge.utils import get_file_id_and_ref
+from userge.utils import parse_buttons as pb
+
+from .bot.alive import check_media_link
+from .bot.utube_inline import get_ytthumb, ytdl_btn_generator
+from .fun.stylish import font_gen
+from .misc.redditdl import reddit_thumb_link
+
+MEDIA_TYPE, MEDIA_URL = None, None
+PATH = "userge/xcache"
+_CATEGORY = {
+    "admin": "🙋🏻‍♂️",
+    "fun": "🎨",
+    "misc": "🧩",
+    "tools": "🧰",
+    "utils": "🗂",
+    "unofficial": "➕",
+    "temp": "♻️",
+    "plugins": "💎",
+    "bot": "💠",
+}
+# Database
+SAVED_SETTINGS = get_collection("CONFIGS")
+BUTTON_BASE = get_collection("TEMP_BUTTON")  # TODO use json cache
+REPO_X = InlineQueryResultArticle(
+    title="Repo",
+    input_message_content=InputTextMessageContent("**Here's how to setup USERGE-X** "),
+    url="https://github.com/code-rgb/USERGE-X",
+    description="Setup Your Own",
+    thumb_url="https://i.imgur.com/1xsOo9o.png",
+    reply_markup=InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    "🔥 USERGE-X Repo", url="https://github.com/code-rgb/USERGE-X"
+                ),
+                InlineKeyboardButton(
+                    "🚀 Deploy USERGE-X",
+                    url=(
+                        "https://heroku.com/deploy?template="
+                        "https://github.com/code-rgb/USERGE-X/tree/alpha"
+                    ),
+                ),
+            ]
+        ]
+    ),
+)
