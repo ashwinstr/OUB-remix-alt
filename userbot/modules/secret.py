@@ -26,15 +26,15 @@ if BOT_USERNAME is not None and tgbot is not None:
                 try:
                     u = await event.client.get_entity(u)
                     if u.username:
-                        sandy = f"@{u.username}"
+                        ash = f"@{u.username}"
                     else:
-                        sandy = f"[{u.first_name}](tg://user?id={u.id})"
+                        ash = f"[{u.first_name}](tg://user?id={u.id})"
                 except ValueError:
                     # ValueError: Could not find the input entity
-                    sandy = f"[user](tg://user?id={u})"
+                    ash = f"[user](tg://user?id={u})"
                 result = builder.article(
                     title="secret message",
-                    text=f"🔒 A whisper message to {sandy}, Only he/she can open it.",
+                    text=f"🔒 A whisper message to {ash}, Only he/she can open it.",
                     buttons=buttons,
                 )
                 await event.answer([result] if result else None)
@@ -47,12 +47,12 @@ if BOT_USERNAME is not None and tgbot is not None:
                     )
                 ]
                 if u.username:
-                    sandy = f"@{u.username}"
+                    ash = f"@{u.username}"
                 else:
-                    sandy = f"[{u.first_name}](tg://user?id={u.id})"
+                    ash = f"[{u.first_name}](tg://user?id={u.id})"
                 result = builder.article(
                     title="secret message",
-                    text=f"🔒 A whisper message to {sandy}, Only he/she can open it.",
+                    text=f"🔒 A whisper message to {ash}, Only he/she can open it.",
                     buttons=buttons,
                 )
                 await event.answer([result] if result else None)
