@@ -1,7 +1,7 @@
 from userbot.events import register
 from userbot import NO_PM_LOG_USERS, PM_LOGGR_BOT_API_ID
 
-@register(outgoing=True, incoming=True, func=lambda e: e.mentioned))
+@register(outgoing=True, incoming=True, func=lambda e: e.mentioned)
 async def log_tagged_messages(event):
     hmm = await event.get_chat()
     if hmm.id in NO_PM_LOG_USERS:
