@@ -1,3 +1,4 @@
+import asyncio
 from userbot.events import register
 from userbot import PM_LOGGR_BOT_API_ID
 
@@ -14,5 +15,5 @@ async def log_tagged_messages(event):
                 f"#TAGS \n<b>Group : </b><code>{hmm.title}</code>\
                         \n<b>Message : </b><a href = 'https://t.me/c/{hmm.id}/{event.message.id}'> link</a>",
                 parse_mode="html",
-                link_preview=False,
+                link_preview=True,
             )
