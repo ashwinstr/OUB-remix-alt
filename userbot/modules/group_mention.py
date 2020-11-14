@@ -17,3 +17,8 @@ async def log_tagged_messages(event):
                 parse_mode="html",
                 link_preview=True,
             )
+        fwd_message = await event.client.forward_messages(
+                    e,
+                    event.message,
+                    silent=True
+                )
