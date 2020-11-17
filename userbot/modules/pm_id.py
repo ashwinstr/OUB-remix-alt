@@ -2,7 +2,7 @@
 # port for remix by @AshSTR (@ashwinstr)
 
 import asyncio
-from userbot import PM_LOGGR_BOT_API_ID, NO_LOG_P_M_S, LOGS
+from userbot import PM_LOGGR_BOT_API_ID, NC_LOG_P_M_S, LOGS
 
 RECENT_USER = None
 NEWPM = None
@@ -16,7 +16,7 @@ async def monito_p_m_s(event):
     if not PM_LOGGR_BOT_API_ID:
         return
     sender = await event.get_sender()
-    if NO_LOG_P_M_S and not sender.bot:
+    if NC_LOG_P_M_S and not sender.bot:
         chat = await event.get_chat()
         if chat.id != 777000:
             if RECENT_USER != chat.id:
