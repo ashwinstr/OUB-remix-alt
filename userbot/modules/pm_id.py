@@ -2,7 +2,7 @@
 # port for remix by @AshSTR (@ashwinstr)
 
 import asyncio
-from userbot import PM_LOGGR_BOT_API_ID, NO_LOG_P_M_S
+from userbot import PM_LOGGR_BOT_API_ID, NO_LOG_P_M_S, LOGS
 
 RECENT_USER = None
 NEWPM = None
@@ -35,7 +35,6 @@ async def monito_p_m_s(event):
                     PM_LOGGR_BOT_API_ID,
                     f"{mentionuser(sender.first_name , sender.id)} has sent a new message \nId : `{chat.id}`",
                 )
-            
                 COUNT += 1
             except Exception as e:
                 LOGS.warn(str(e))
