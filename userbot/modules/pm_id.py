@@ -3,6 +3,7 @@
 
 import asyncio
 from userbot import PM_LOGGR_BOT_API_ID, NC_LOG_P_M_S, LOGS
+from userbot.events import register
 
 RECENT_USER = None
 NEWPM = None
