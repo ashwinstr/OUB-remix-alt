@@ -8,7 +8,7 @@ RECENT_USER = None
 NEWPM = None
 COUNT = 0
 
-@register(incoming=True, func=lambda e: e.is_private))
+@register(incoming=True, func=lambda e: e.is_private)
 async def monito_p_m_s(event):
     global RECENT_USER
     global NEWPM
