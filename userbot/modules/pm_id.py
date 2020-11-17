@@ -36,5 +36,3 @@ async def monito_p_m_s(event):
                     f"{mentionuser(sender.first_name , sender.id)} has sent a new message \nId : `{chat.id}`",
                 )
                 COUNT += 1
-            except Exception as e:
-                LOGS.warn(str(e))
