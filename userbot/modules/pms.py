@@ -304,14 +304,15 @@ async def monito_p_m_s(event):
                 LOGS.warn(str(e))
                        
         if sender.id != self_user.id:
-            if event.chat_id and NC_LOG_P_M_S:
-                await event.client.send_message(
-                    PM_LOGGR_BOT_API_ID,
-                    f"#TAGS \n<b>Sent by : </b><a href = 'tg://user?id={sender.id}'> {sender.first_name}</a>\
-                    \n<b>ID : </b><code>{sender.id}</code>",
-                parse_mode="html",
-                link_preview=True,
-                )
+#            if event.chat_id and NC_LOG_P_M_S:
+#                await event.client.send_message(
+#                    PM_LOGGR_BOT_API_ID,
+#                    f"#TAGS \n<b>Sent by : </b><a href = 'tg://user?id={sender.id}'> {sender.first_name}</a>\
+#                    \n<b>ID : </b><code>{sender.id}</code>",
+#                parse_mode="html",
+#                link_preview=True,
+#                )
+             return
         else:
             if event.chat_id and NC_LOG_P_M_S:
                 await event.client.send_message(
