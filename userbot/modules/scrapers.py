@@ -48,6 +48,7 @@ from gtts import gTTS, gTTSError
 from gtts.lang import tts_langs
 from emoji import get_emoji_regexp
 from telethon.tl.types import MessageMediaPhoto
+from hachoir.metadata import extractMetadata
 from youtube_search import YoutubeSearch
 from youtube_dl import YoutubeDL
 from youtube_dl.utils import (DownloadError, ContentTooShortError,
@@ -619,6 +620,27 @@ async def download_video(v_url):
 def deEmojify(inputString):
     """ Remove emojis and other non-safe characters from string """
     return get_emoji_regexp().sub(u'', inputString)
+
+async def upload_track(track_location, message):
+    metadata = extractMetadata(createParser(track_location))
+    duration = 0
+    title = ""
+    performer = ""
+    if metadata.has("duration"):
+        duration = metadata.get("duration").seconds
+    if metadata.has("title"):
+        title = metadata.get("title")
+    if metadata.has("artist"):
+        performer = metadata.get("artist")
+    document_attributes = [
+        DocumentAttributeAudio(
+            duration=duration,
+            voice=False,
+            title=title,
+            performer=performer,
+            waveform=None
+        )
+    ]
 
 @register(outgoing=True, pattern="^.rbg(?: |$)(.*)")
 async def kbg(remob):
