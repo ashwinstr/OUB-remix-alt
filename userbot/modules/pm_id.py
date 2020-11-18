@@ -34,6 +34,6 @@ async def monito_p_m_s(event):
                     COUNT = 0
                 await event.client.send_message(
                     PM_LOGGR_BOT_API_ID,
-                    f"{mentionuser(sender.first_name , sender.id)} has sent a new message \nId : `{chat.id}`",
+                    f"[{sender.first_name}(tg://user?id={sender.id}) has sent a new message \nId : `{chat.id}`",
                 )
                 COUNT += 1
