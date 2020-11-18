@@ -20,7 +20,7 @@ async def monito_p_m_s(event):
     if NC_LOG_P_M_S and not sender.bot:
         chat = await event.get_chat()
         if chat.id != 777000:
-            if RECENT_USER != chat.id or COUNT >= 5:
+            if RECENT_USER != chat.id or COUNT > 4:
                 RECENT_USER = chat.id
                 if NEWPM:
                     if COUNT > 1:
