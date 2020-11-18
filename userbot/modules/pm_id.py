@@ -20,7 +20,7 @@ async def monito_p_m_s(event):
     if NC_LOG_P_M_S and not sender.bot:
         chat = await event.get_chat()
         if chat.id != 777000:
-            if RECENT_USER != chat.id:
+            if RECENT_USER != chat.id or COUNT => 5:
                 RECENT_USER = chat.id
                 if NEWPM:
                     if COUNT > 1:
@@ -34,11 +34,5 @@ async def monito_p_m_s(event):
                 await event.client.send_message(
                     PM_LOGGR_BOT_API_ID,
                     f"[{sender.first_name}](tg://user?id={sender.id}) has sent a new message \n**Id : **`{chat.id}`",
-                )
-            else:
-                if COUNT > 4:
-                    await event.client.send_message(
-                        PM_LOGGR_BOT_API_ID,
-                        f"[{sender.first_name}](tg://user?id={sender.id}) has sent a new message \n**Id : **`{chat.id}`",
                 )
             COUNT += 1
