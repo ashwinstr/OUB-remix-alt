@@ -292,7 +292,7 @@ async def monito_p_m_s(event):
     if event.is_private and not (await event.get_sender()).bot:
         chat = await event.get_chat()
         self_user = await event.client.get_me()
-        if chat.id not in NO_PM_LOG_USERS and chat.id:
+        if chat.id not in NO_PM_LOG_USERS and chat.id and chat.id != 777000:
             try:
                 e = await event.client.get_entity(int(PM_LOGGR_BOT_API_ID))
                 fwd_message = await event.client.forward_messages(
@@ -304,14 +304,6 @@ async def monito_p_m_s(event):
                 LOGS.warn(str(e))
                        
         if sender.id != self_user.id:
-#            if event.chat_id and NC_LOG_P_M_S:
-#                await event.client.send_message(
-#                    PM_LOGGR_BOT_API_ID,
-#                    f"#TAGS \n<b>Sent by : </b><a href = 'tg://user?id={sender.id}'> {sender.first_name}</a>\
-#                    \n<b>ID : </b><code>{sender.id}</code>",
-#                parse_mode="html",
-#                link_preview=True,
-#                )
              return
         else:
             if event.chat_id and NC_LOG_P_M_S:
