@@ -19,7 +19,7 @@ async def log_tagged_messages(event):
                 link_preview=True,
             )
         else:
-            if not (await event.get_chat()).bot:
+            if await event.get_chat() is not bot:
                 await event.client.send_message(
                     PM_LOGGR_BOT_API_ID,
                     f"#TAGS \n<b>Sent by : </b><a href = 'tg://user?id={sender.id}'> {sender.first_name}</a>\
