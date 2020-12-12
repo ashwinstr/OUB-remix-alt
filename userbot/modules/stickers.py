@@ -33,16 +33,11 @@ KANGING_STR = [
     "Inviting this sticker over to my pack...",
     "Kanging this sticker...",]
 
-<<<<<<< HEAD
-@register(outgoing=True, pattern="^.kangme($| )?((?![0-9]).+?)? ?([0-9]*)?")
-async def kang(event):
-    """ Function for .kang command, create a sticker pack and add stickers. """
-    await event.edit('`Kanging...`')
-=======
+
 @register(outgoing=True, pattern="^.kang")
 async def kang(args):
     """ For .kang command, kangs stickers or creates new ones. """
->>>>>>> b8cd5ed2e1356b6f5af92f98e8e8fdea8a6e1a48
+    await args.edit('`Kanging...`')
     user = await bot.get_me()
     if not user.username:
         user.username = user.first_name
@@ -87,68 +82,6 @@ async def kang(args):
         await args.edit("`Couldn't download sticker! Make sure you send a proper sticker/photo.`")
         return
 
-<<<<<<< HEAD
-    is_anim = message.file.mime_type == "application/x-tgsticker"
-    if not is_anim:
-        img = await resize_photo(sticker)
-        sticker.name = "sticker.png"
-        sticker.seek(0)
-        img.save(sticker, "PNG")
-
-    # The user didn't specify an emoji...
-    if not emoji:
-        if message.file.emoji: # ...but the sticker has one
-            emoji = message.file.emoji
-        else: # ...and the sticker doesn't have one either
-            emoji = "🤔"
-
-    packname = f"a{user.id}_by_{pack_username}_{number}{'_anim' if is_anim else ''}"
-    packtitle = (f"@{user.username or user.first_name}'s kang pack Vol."
-                f"{number}{' animated' if is_anim else ''}")
-    response = urllib.request.urlopen(
-            urllib.request.Request(f'http://t.me/addstickers/{packname}'))
-    htmlstr = response.read().decode("utf8").split('\n')
-    new_pack = PACK_DOESNT_EXIST in htmlstr
-
-    # Mute Stickers bot to ensure user doesn't get notification spam
-    muted = await bot(UpdateNotifySettingsRequest(
-        peer='t.me/Stickers',
-        settings=InputPeerNotifySettings(mute_until=2**31-1)) # Mute forever
-    )
-    if not muted: # Tell the user just in case, this may rarely happen
-        await event.edit(
-            "`remix couldn't mute the Stickers bot, beware of notification spam.`")
-
-    if new_pack:
-        await event.edit("`This remix Sticker Pack doesn't exist! Creating a new pack...`")
-        await newpack(is_anim, sticker, emoji, packtitle, packname)
-    else:
-        async with bot.conversation('t.me/Stickers') as conv:
-            # Cancel any pending command
-            await conv.send_message('/cancel')
-            await conv.get_response()
-
-            # Send the add sticker command
-            await conv.send_message('/addsticker')
-            await conv.get_response()
-
-            # Send the pack name
-            await conv.send_message(packname)
-            x = await conv.get_response()
-
-            # Check if the selected pack is full
-            while x.text == PACK_FULL:
-                # Switch to a new pack, create one if it doesn't exist
-                number += 1
-                packname = f"a{user.id}_by_{pack_username}_{number}{'_anim' if is_anim else ''}"
-                packtitle = (f"@{user.username or user.first_name}'s kang pack Vol."
-                            f"{number}{' animated' if is_anim else ''}")
-
-                await event.edit(
-                    f"`Switching to Pack {number} due to insufficient space in Pack {number-1}.`"
-                )
-
-=======
     if photo:
         splat = args.text.split()
         if not emojibypass:
@@ -195,7 +128,6 @@ async def kang(args):
                 await conv.get_response()
                 # Ensure user doesn't get spamming notifications
                 await bot.send_read_acknowledge(conv.chat_id)
->>>>>>> b8cd5ed2e1356b6f5af92f98e8e8fdea8a6e1a48
                 await conv.send_message(packname)
                 x = await conv.get_response()
                 while "120" in x.text:
@@ -449,22 +381,16 @@ async def sticker_to_png(sticker):
             await sticker.delete()
     return
 
-<<<<<<< HEAD
-CMD_HELP.update({
-    "stickers":
-    "`.kangme`\
-=======
 
 CMD_HELP.update(
     {
         "stickers": ".kang\
->>>>>>> b8cd5ed2e1356b6f5af92f98e8e8fdea8a6e1a48
 \nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack.\
-\n\n`.kangme` [emoji('s)]\
+\n\n`.kang` [emoji('s)]\
 \nUsage: Works just like .kang but uses the emoji('s) you picked.\
-\n\n`.kangme` [number]\
+\n\n`.kang` [number]\
 \nUsage: Kang's the sticker/image to the specified pack but uses 😃 as emoji.\
-\n\n`.kangme` [emoji('s)] [number]\
+\n\n`.kang` [emoji('s)] [number]\
 \nUsage: Kang's the sticker/image to the specified pack and uses the emoji('s) you picked.\
 \n\n`.stkrinfo`\
 \nUsage: Gets info about the sticker pack.\
