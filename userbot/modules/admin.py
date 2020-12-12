@@ -673,13 +673,14 @@ async def pin(msg):
     """ For .pinme command, pins the replied/tagged message on the top the chat. """
     # Admin or creator check
     chat = await msg.get_chat()
-    admin = chat.admin_rights
-    creator = chat.creator
+    if not msg.is_private:
+        admin = chat.admin_rights
+        creator = chat.creator
 
-    # If not admin and not creator, return
-    if not admin and not creator:
-        await msg.edit(NO_ADMIN)
-        return
+        # If not admin and not creator, return
+        if not admin and not creator:
+            await msg.edit(NO_ADMIN)
+            return
 
     to_pin = msg.reply_to_msg_id
 
@@ -706,11 +707,17 @@ async def pin(msg):
     user = await get_user_from_id(msg.from_id, msg)
 
     if BOTLOG:
-        await msg.client.send_message(
-            BOTLOG_CHATID, "#PIN\n"
-            f"ADMIN: [{user.first_name}](tg://user?id={user.id})\n"
-            f"CHAT: {msg.chat.title}(`{msg.chat_id}`)\n"
-            f"LOUD: {not is_silent}")
+        if not msg.is_private:
+            await msg.client.send_message(
+                BOTLOG_CHATID, "#PIN\n"
+                f"ADMIN: [{user.first_name}](tg://user?id={user.id})\n"
+                f"CHAT: {msg.chat.title}(`{msg.chat_id}`)\n"
+                f"LOUD: {not is_silent}")
+        else:
+            await msg.client.send_message(
+                BOTLOG_CHATID, "#PIN\n"
+                f"PM with: [{user.first_name}](tg://user?id={user.id})\n"
+                f"LOUD: {not is_silent}")
 
 
 @register(outgoing=True, pattern="^.kick(?: |$)(.*)")
