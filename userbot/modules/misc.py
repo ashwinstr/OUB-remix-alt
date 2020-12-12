@@ -98,8 +98,8 @@ async def bot_community(community):
 async def bot_support(wannahelp):
     """ For .support command, just returns the group link. """
     await wannahelp.edit(
-        "Join the OpenUserBot Channel: @PaperPlaneExtended_news \
-        \nJoin the OpenUserBot Chat: @PPE_Support")
+        "Join the oub-remix Channel: @oub-remix \
+        \nJoin the oub-remix Chat: @remixsupport")
 
 
 @register(outgoing=True, pattern="^.creator$")
@@ -317,5 +317,9 @@ CMD_HELP.update({
 \n\n`.raw`\
 \nUsage: Get detailed JSON-like formatted data about replied message.\
 \n\n`.reverse`\
-\nUsage: Reply to a pic/sticker to revers-search it on Google Images !!"    
+\nUsage: Reply to a pic/sticker to revers-search it on Google Images.\
+\n\n: `.poll`\
+\nUsage:If you doesnt give any input it sends a default poll. if you like customize it then use this syntax:\
+\n `.poll question ; option 1; option2 ;`\
+\n ';' this seperates the each option and question."
 })

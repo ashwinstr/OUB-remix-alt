@@ -19,7 +19,10 @@ google-api-python-client==1.8.0
 google-auth-oauthlib
 googletrans==3.1.0a0
 google_images_download>=2.7.1
+<<<<<<< HEAD
 googletrans==3.1.0a0
+=======
+>>>>>>> b8cd5ed2e1356b6f5af92f98e8e8fdea8a6e1a48
 gTTS>=2.1.1
 gTTS-token>=1.1.3
 hachoir>=3.0a5
@@ -30,6 +33,7 @@ humanize
 lxml
 oauth2client
 Pillow>=6.0.0
+fontTools
 psycopg2
 psycopg2-binary
 pybase64>=0.4.0
@@ -40,7 +44,7 @@ python-dotenv
 pytz
 qrcode
 requests>=2.18.4
-search-engine-parser>=0.4.2
+search-engine-parser>=0.6.1
 speedtest-cli>=2.0.2
 sqlalchemy>=1.2
 telethon>=1.14.0 
@@ -50,13 +54,12 @@ wikipedia>=1.4.0
 coffeehouse>=2.1.0
 git+https://github.com/johnwmillr/LyricsGenius.git
 git+https://github.com/voins/google-images-download.git@2cd68173c961324a2c41c61e8b6f40a49663ce60
-
 lyricsgenius
 redis>=3.3.10
 PyDrive2
 pyDownload
 beautifulsoup4>=4.8.1
-youtube-dl>=2019.9.28
+youtube-dl
 PyGithub
 bs4
 covid>=2.2.9
@@ -64,8 +67,6 @@ base
 pip>=19.2.3
 setuptools>=28.8.0
 selenium>=3.141.0 
-# SpeechRecognition>=3.4.6
-# wheel>=0.30.0a0
 telegraph
 python-dateutil
 pyfiglet   
@@ -87,4 +88,11 @@ glitch_this
 twitter_scraper
 pyaztro
 jikanpy
+<<<<<<< HEAD
 PyDictionary
+=======
+vcsi
+lottie
+wand
+colour
+>>>>>>> b8cd5ed2e1356b6f5af92f98e8e8fdea8a6e1a48

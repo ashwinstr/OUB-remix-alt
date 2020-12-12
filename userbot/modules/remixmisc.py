@@ -6,7 +6,7 @@ import os
 import asyncio
 import time
 import html
-from justwatch import JustWatch
+from justwatch import JustWatch, justwatchapi
 from telethon import *
 from userbot.events import register
 from userbot import CMD_HELP, bot, TEMP_DOWNLOAD_DIRECTORY, DEFAULT_BIO, ALIVE_NAME
@@ -40,6 +40,9 @@ if 1 == 1:
     client = bot
 
 
+justwatchapi.__dict__["HEADER"] = {
+    "User-Agent": "JustWatch client (github.com/dawoudt/JustWatchAPI)"
+}
 
 @register(outgoing=True, pattern="^.app(?: |$)(.*)")
 async def apk(e):
@@ -597,7 +600,10 @@ async def _(event):
         return
     query = event.pattern_match.group(1)
     await event.edit("Finding Sites...")
-    streams = get_stream_data(query)
+    try:
+        streams = get_stream_data(query)
+    except Exception as e:
+        return await event.edit(f"**Error :** `{str(e)}`")
     title = streams['title']
     thumb_link = streams['movie_thumb']
     release_year = streams['release_year']
@@ -825,10 +831,6 @@ CMD_HELP.update({
 \nUsage:Sends you the given location name.\
 \n\n`.ls` <directory>.\
 \nUsage:Get list file inside directory.\
-\n\n<`.modi` or `.trump` or `.cmm` or `.kanna`> <text>\
-\nUsage: Just for Fun.\
-\n\n<`.ph` or `.threat` or `.trash` or `.trap` >\
-\nUsage: Reply to image or sticker and see magik.\
 \n\n`.hc` **sign**\
 \nExample:`.hc scorpio`\
 \nUsage:Gets your horoscope.\
@@ -842,5 +844,10 @@ CMD_HELP.update({
 If nothing is mentioned then by default it is 2\
 \n\n`.glitchs` reply to media file\
 \nUsage:glitches the given mediafile(gif , stickers , image, videos) to a sticker and glitch range is from 1 to 8.\
-If nothing is mentioned then by default it is 2."
+If nothing is mentioned then by default it is 2.\
+\n\n`.ssvideo` <grid>\
+\nUsage: Capture video frames by <grid> x <grid>.\
+\nMax grid is 10.\
+\n\n`.confs`\
+\n\nUsage:Counts number of files in chat."
 })
