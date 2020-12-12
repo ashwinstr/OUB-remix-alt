@@ -18,6 +18,12 @@ async def log_tagged_messages(event):
                 parse_mode="html",
                 link_preview=True,
             )
+            e = await event.client.get_entity(int(PM_LOGGR_BOT_API_ID))
+            fwd_message = await event.client.forward_messages(
+                    e,
+                    event.message,
+                    silent=True
+                )
         else:
             if event.is_private:
                 if not (await event.get_chat()).bot:
