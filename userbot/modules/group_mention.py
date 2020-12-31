@@ -1,3 +1,6 @@
+# credits: mrconfused
+# imported by AshSTR
+
 import asyncio
 from userbot.events import register
 from userbot import PM_LOGGR_BOT_API_ID
